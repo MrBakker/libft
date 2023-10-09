@@ -6,7 +6,7 @@
 /*   By: jbakker <marvin@42.fr>                       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 17:29:27 by jbakker       #+#    #+#                 */
-/*   Updated: 2023/10/09 12:12:09 by jbakker       ########   odam.nl         */
+/*   Updated: 2023/10/09 12:44:00 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 		ptr2++;
 		count++;
 	}
-	return (*ptr1 - *ptr2);
+	if (n > 0)
+		return (*ptr1 - *ptr2);
+	return (0);
 }
