@@ -6,7 +6,7 @@
 /*   By: jbakker <marvin@42.fr>                       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 18:17:48 by jbakker       #+#    #+#                 */
-/*   Updated: 2023/10/04 16:14:12 by jbakker       ########   odam.nl         */
+/*   Updated: 2023/10/09 12:04:14 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 
 	dest_ptr = (char *)dest;
 	src_ptr = (char *)src;
+	if (!dest && !src)
+		return (dest);
 	index = 0;
-	while (n--)
+	while (index < n)
 	{
 		dest_ptr[index] = src_ptr[index];
 		++index;

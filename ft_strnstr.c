@@ -6,7 +6,7 @@
 /*   By: jbakker <marvin@42.fr>                       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 17:18:06 by jbakker       #+#    #+#                 */
-/*   Updated: 2023/10/06 16:49:53 by jbakker       ########   odam.nl         */
+/*   Updated: 2023/10/09 12:28:16 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 
 	index = 0;
 	depth = 0;
+	if (!little[0])
+		return ((char *)big);
+	if (len == 0)
+		return (NULL);
 	while (big[index] && index < len)
 	{
 		while (big[index + depth] == little[depth] && little[depth])
