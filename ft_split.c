@@ -6,19 +6,19 @@
 /*   By: jbakker <marvin@42.fr>                       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 15:37:17 by jbakker       #+#    #+#                 */
-/*   Updated: 2023/11/08 13:49:07 by jbakker       ########   odam.nl         */
+/*   Updated: 2023/11/08 14:37:32 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	set_zero(int *i1, int *i2)
+static void	set_zero(int *i1, int *i2)
 {
 	*i1 = 0;
 	*i2 = 0;
 }
 
-char	**ft_free(char **output, int index)
+static char	**ft_free(char **output, int index)
 {
 	while (--index >= 0)
 		free(output[index]);
@@ -26,7 +26,7 @@ char	**ft_free(char **output, int index)
 	return (NULL);
 }
 
-int	count_substrings(char const *s, char c)
+static int	count_substrings(char const *s, char c)
 {
 	int	count;
 	int	index;
