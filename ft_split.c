@@ -6,72 +6,70 @@
 /*   By: jbakker <marvin@42.fr>                       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 15:37:17 by jbakker       #+#    #+#                 */
-/*   Updated: 2023/10/06 20:03:21 by jbakker       ########   odam.nl         */
+/*   Updated: 2023/11/08 13:49:07 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_amount_of_substrings(char const *s, char c)
+void	set_zero(int *i1, int *i2)
 {
-	char	*ptr;
-	int		output;
-	int		seen;
-
-	output = 0;
-	ptr = (char *)s;
-	while (*ptr)
-	{
-		while (*ptr == c)
-			ptr++;
-		seen = 0;
-		while (*ptr && *ptr != c)
-		{
-			ptr++;
-			seen++;
-		}
-		if (seen)
-			++output;
-	}
-	return (output);
+	*i1 = 0;
+	*i2 = 0;
 }
 
-static char	**get_output_str(int c_count)
+char	**ft_free(char **output, int index)
 {
-	char	**output;
+	while (--index >= 0)
+		free(output[index]);
+	free (output);
+	return (NULL);
+}
 
-	output = (char **)malloc((c_count + 1) * sizeof(char *));
-	if (!output)
-		return (NULL);
-	output[c_count] = NULL;
-	return (output);
+int	count_substrings(char const *s, char c)
+{
+	int	count;
+	int	index;
+
+	count = 0;
+	index = 0;
+	while (s[index])
+	{
+		while (s[index] == c)
+			++index;
+		if (s[index])
+			++count;
+		while (s[index] && s[index] != c)
+			++index;
+	}
+	return (count);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**output;
-	int		c_count;
-	int		index;
-	size_t	start;
-	size_t	end;
+	int		out_index;
+	int		string_index;
+	int		start;
+	int		out_len;
 
-	c_count = count_amount_of_substrings(s, c);
-	output = get_output_str(c_count);
+	out_len = count_substrings(s, c);
+	set_zero(&out_index, &string_index);
+	output = (char **)ft_calloc(out_len + 1, sizeof(char *));
 	if (!output)
 		return (NULL);
-	index = 0;
-	start = 0;
-	while (c_count--)
+	while (out_index < out_len)
 	{
-		while (s[start] == c)
-			start++;
-		end = start;
-		while (s[end] && s[end] != c)
-			end++;
-		output[index] = (char *)malloc((end - start + 1) * sizeof(char));
-		ft_memcpy(output[index], s + start, (end - start));
-		output[index++][end - start] = '\0';
-		start = end;
+		while (s[string_index] == c)
+			++string_index;
+		start = string_index;
+		while (s[string_index] && s[string_index] != c)
+			++string_index;
+		output[out_index++] = malloc((string_index - start + 1) * sizeof(char));
+		if (!output[out_index - 1])
+			return (ft_free(output, out_index));
+		ft_memcpy(output[out_index - 1], s + start, string_index - start + 1);
+		output[out_index - 1][string_index - start] = '\0';
 	}
 	return (output);
 }
