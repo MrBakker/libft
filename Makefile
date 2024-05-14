@@ -1,6 +1,6 @@
 NAME = libft.a
 
-CC := gcc
+CC := cc
 DIR := objs/
 EXTRAFLAGS := -Wall -Wextra -Werror
 
@@ -13,7 +13,9 @@ SRCS := ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \
 	ft_lstiter.c ft_lstlast.c ft_lstnew.c ft_lstsize.c ft_lstmap.c \
 	ft_substr.c ft_tolower.c ft_toupper.c get_next_line_bonus.c \
-	get_next_line_utils_bonus.c
+	get_next_line_utils_bonus.c ft_printf.c ft_printf_utils.c ft_putstr.c \
+	ft_putchar.c ft_putvoidptr.c ft_putnum.c ft_putunum.c ft_printhex.c \
+	ft_flags.c ft_write.c
 
 BINS := $(addprefix ${DIR}, ${SRCS:.c=.o})
 
@@ -22,7 +24,8 @@ all: ${NAME}
 ${NAME}: ${BINS}
 	@ar r ${NAME} ${BINS}
 
-${DIR}%.o: %.c libft.h get_next_line_bonus.h
+${DIR}%.o: %.c libft.h get_next_line_bonus.h ft_printf.h
+	@mkdir -p ${DIR}
 	@${CC} ${EXTRAFLAGS} -c $< -o $@
 
 clean:

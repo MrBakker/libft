@@ -6,7 +6,7 @@
 /*   By: jbakker <marvin@42.fr>                       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/03 12:03:34 by jbakker       #+#    #+#                 */
-/*   Updated: 2023/10/09 12:17:37 by jbakker       ########   odam.nl         */
+/*   Updated: 2024/04/26 13:44:35 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,26 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdarg.h>
+
+typedef struct s_flags
+{
+	int	hashtag;
+	int	space;
+	int	plus;
+	int	dash;
+	int	zero;
+	int	dot;
+	int	width;
+}	t_flags;
+
+typedef struct s_buff
+{
+	char	*buff;
+	int		capacity;
+	int		index;
+	int		written;
+}	t_buff;
 
 typedef struct s_list
 {
@@ -29,9 +49,21 @@ int		ft_isdigit(int c);
 int		ft_isprint(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
+int		ft_max(int a, int b);
 int		ft_atoi(const char *nptr);
+int		ft_printf(const char *format, ...);
+int		ft_putnum(int num, t_flags *flags);
+int		ft_putchar(char c, t_flags *flags);
+int		ft_putunum(int num, t_flags *flags);
+int		ft_putstr(char *str, t_flags *flags);
+int		ft_putvoidptr(void *ptr, t_flags *flags);
+int		ft_put_uint(unsigned int numb, int print);
+int		ft_write(int force, const char *str, int len);
+int		ft_printhex(int num, int hex, t_flags *flags);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		get_flags(const char *format, int index, t_flags *flags);
+int		set_flag_value(const char *format, int index, int *flag);
 
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
@@ -41,6 +73,7 @@ void	ft_bzero(void *s, size_t n);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
+void	ft_print_flags(t_flags *flags);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
@@ -51,6 +84,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 
 char	check(unsigned int i, char c);
+char	num_to_hex(int num, char base_case);
 
 char	*ft_itoa(int n);
 char	*ft_strdup(const char *s);

@@ -6,7 +6,7 @@
 /*   By: jbakker <jbakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/06 12:35:39 by jbakker       #+#    #+#                 */
-/*   Updated: 2023/10/23 11:57:27 by jbakker       ########   odam.nl         */
+/*   Updated: 2024/04/26 13:50:08 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,4 @@ void	c_memcpy(const char *dest, const char *src, size_t len)
 		++index;
 	}
 	ptr[index] = '\0';
-}
-
-int	ft_max(int a, int b)
-{
-	return ((a < b) * b + (a >= b) * a);
 }
