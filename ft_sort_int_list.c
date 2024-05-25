@@ -6,7 +6,7 @@
 /*   By: jbakker <jbakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/18 15:56:12 by jbakker       #+#    #+#                 */
-/*   Updated: 2024/05/21 16:26:51 by jbakker       ########   odam.nl         */
+/*   Updated: 2024/05/25 17:41:50 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ static void	merge(int *list, int l1, int l2)
 {
 	int	index_sl1;
 	int	index_sl2;
-	int	index;
 	int	temp;
 
-	index = -1;
 	index_sl1 = 0;
 	index_sl2 = l1;
 	while (l1 > 0 || l2 > 0)
