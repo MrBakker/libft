@@ -6,7 +6,7 @@
 /*   By: jbakker <marvin@42.fr>                       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 17:02:13 by jbakker       #+#    #+#                 */
-/*   Updated: 2023/10/06 14:44:47 by jbakker       ########   odam.nl         */
+/*   Updated: 2024/05/17 11:55:25 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,44 @@ int	ft_atoi(const char *nptr)
 		output = output * 10 + (*trim - '0') * factor;
 		++trim;
 	}
+	return (output);
+}
+
+static int	translate_base(char c)
+{
+	static const char	*base_str = "0123456789abcdefghijklmnopqrstuvwxyz";
+	char				*result;
+
+	result = ft_strchr(base_str, ft_tolower(c));
+	if (!result)
+		return (INT_MAX);
+	return (result - base_str);
+}
+
+int	ft_atoi_base(const char *nptr, int base)
+{
+	int	index;
+	int	output;
+	int	factor;
+
+	index = 0;
+	output = 0;
+	factor = 1;
+	while ((nptr[index] >= 9 && nptr[index] <= 13) || nptr[index] == ' ')
+		index++;
+	if (nptr[index] == '-' && ft_isdigit(nptr[index + 1]))
+	{
+		++index;
+		factor = -1;
+	}
+	if (nptr[index] == '+')
+		++index;
+	if (ft_strncmp(nptr + index, "0x", 2) == 0)
+	{
+		index += 2;
+		base = 16;
+	}
+	while (nptr[index] && base > translate_base(nptr[index]))
+		output = output * base + translate_base(nptr[index++]) * factor;
 	return (output);
 }

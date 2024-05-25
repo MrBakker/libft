@@ -1,23 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf_utils.c                                  :+:    :+:            */
+/*   ft_max.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jbakker <jbakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/10/09 14:58:19 by jbakker       #+#    #+#                 */
-/*   Updated: 2024/05/18 17:55:35 by jbakker       ########   odam.nl         */
+/*   Created: 2024/05/18 17:54:43 by jbakker       #+#    #+#                 */
+/*   Updated: 2024/05/19 10:06:23 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	num_to_hex(int num, char base_case)
+int	ft_max(int a, int b)
 {
-	return ((num < 10) * '0' + (num > 9) * (base_case - 10) + num);
+	return ((a > b) * a + (b >= a) * b);
 }
 
-int	ft_abs(int num)
+int	ft_max_item(int *list, int size)
 {
-	return ((num < 0) * -num + (num >= 0) * num);
+	int	max;
+
+	max = list[0];
+	while (--size > 0)
+		max = ft_max(max, list[size]);
+	return (max);
+}
+
+int	ft_max_index(int *list, int size)
+{
+	int	max;
+	int	index;
+
+	max = list[0];
+	index = 0;
+	while (--size > 0)
+	{
+		if (list[size] > max)
+		{
+			max = list[size];
+			index = size;
+		}
+	}
+	return (index);
 }

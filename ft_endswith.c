@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf_utils.c                                  :+:    :+:            */
+/*   ft_endswith.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jbakker <jbakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/10/09 14:58:19 by jbakker       #+#    #+#                 */
-/*   Updated: 2024/05/18 17:55:35 by jbakker       ########   odam.nl         */
+/*   Created: 2024/05/17 15:25:44 by jbakker       #+#    #+#                 */
+/*   Updated: 2024/05/17 15:26:57 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	num_to_hex(int num, char base_case)
+int	ft_endswith(char *str, char *end)
 {
-	return ((num < 10) * '0' + (num > 9) * (base_case - 10) + num);
-}
+	int	first_len;
+	int	second_len;
 
-int	ft_abs(int num)
-{
-	return ((num < 0) * -num + (num >= 0) * num);
+	first_len = ft_strlen(str);
+	second_len = ft_strlen(end);
+	if (second_len > first_len)
+		return (0);
+	return (ft_strncmp(str + first_len - second_len, end, second_len) == 0);
 }

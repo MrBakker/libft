@@ -6,7 +6,7 @@
 /*   By: jbakker <jbakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/09 13:52:08 by jbakker       #+#    #+#                 */
-/*   Updated: 2024/04/26 13:47:18 by jbakker       ########   odam.nl         */
+/*   Updated: 2024/05/18 10:50:41 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,8 @@ int	ft_printf(const char *format, ...)
 {
 	va_list	arguments;
 	int		index;
-	int		char_count;
 
 	index = 0;
-	char_count = 0;
 	va_start(arguments, format);
 	while (index >= 0 && format[index])
 	{

@@ -6,7 +6,7 @@
 /*   By: jbakker <marvin@42.fr>                       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/03 12:03:34 by jbakker       #+#    #+#                 */
-/*   Updated: 2024/04/26 13:44:35 by jbakker       ########   odam.nl         */
+/*   Updated: 2024/05/19 10:06:58 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <limits.h>
+
+# define BUFFER_SIZE 200
 
 typedef struct s_flags
 {
@@ -42,6 +45,7 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+int		ft_abs(int num);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
@@ -50,12 +54,20 @@ int		ft_isprint(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 int		ft_max(int a, int b);
+int		ft_min(int a, int b);
+int		ft_wordcount(char *ptr);
 int		ft_atoi(const char *nptr);
+int		ft_min_item(int *list, int size);
+int		ft_max_item(int *list, int size);
+int		ft_min_index(int *list, int size);
+int		ft_max_index(int *list, int size);
+int		ft_endswith(char *str, char *end);
 int		ft_printf(const char *format, ...);
 int		ft_putnum(int num, t_flags *flags);
 int		ft_putchar(char c, t_flags *flags);
 int		ft_putunum(int num, t_flags *flags);
 int		ft_putstr(char *str, t_flags *flags);
+int		ft_atoi_base(const char *nptr, int base);
 int		ft_putvoidptr(void *ptr, t_flags *flags);
 int		ft_put_uint(unsigned int numb, int print);
 int		ft_write(int force, const char *str, int len);
@@ -65,12 +77,16 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		get_flags(const char *format, int index, t_flags *flags);
 int		set_flag_value(const char *format, int index, int *flag);
 
+int		*ft_sort_int_list(int *list, int start_index, int end_index);
+
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 
+void	ft_swap(int *a, int *b);
 void	ft_bzero(void *s, size_t n);
 void	ft_putnbr_fd(int n, int fd);
+void	ft_free_split(char **split);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_print_flags(t_flags *flags);
@@ -87,6 +103,7 @@ char	check(unsigned int i, char c);
 char	num_to_hex(int num, char base_case);
 
 char	*ft_itoa(int n);
+char	*get_next_line(int fd);
 char	*ft_strdup(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);

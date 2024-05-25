@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf_utils.c                                  :+:    :+:            */
+/*   ft_swap.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jbakker <jbakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/10/09 14:58:19 by jbakker       #+#    #+#                 */
-/*   Updated: 2024/05/18 17:55:35 by jbakker       ########   odam.nl         */
+/*   Created: 2024/05/18 15:57:09 by jbakker       #+#    #+#                 */
+/*   Updated: 2024/05/18 15:57:22 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	num_to_hex(int num, char base_case)
+void	ft_swap(int *a, int *b)
 {
-	return ((num < 10) * '0' + (num > 9) * (base_case - 10) + num);
-}
+	int	temp;
 
-int	ft_abs(int num)
-{
-	return ((num < 0) * -num + (num >= 0) * num);
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }

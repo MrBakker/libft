@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf_utils.c                                  :+:    :+:            */
+/*   ft_wordcount.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jbakker <jbakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/10/09 14:58:19 by jbakker       #+#    #+#                 */
-/*   Updated: 2024/05/18 17:55:35 by jbakker       ########   odam.nl         */
+/*   Created: 2024/05/14 13:49:42 by jbakker       #+#    #+#                 */
+/*   Updated: 2024/05/17 14:30:23 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	num_to_hex(int num, char base_case)
+int	ft_wordcount(char *ptr)
 {
-	return ((num < 10) * '0' + (num > 9) * (base_case - 10) + num);
-}
+	int	count;
+	int	index;
 
-int	ft_abs(int num)
-{
-	return ((num < 0) * -num + (num >= 0) * num);
+	index = 0;
+	count = 0;
+	if (!ptr)
+		return (0);
+	while (ptr[index])
+	{
+		while (ptr[index] && ptr[index] == ' ')
+			index++;
+		if (!ptr[index])
+			break ;
+		++count;
+		while (ptr[index] && ptr[index] != ' ')
+			index++;
+	}
+	return (count);
 }
