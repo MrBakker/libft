@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   libft.h                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: jbakker <marvin@42.fr>                       +#+                     */
+/*   By: jgoedhar <jgoedhar@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/03 12:03:34 by jbakker       #+#    #+#                 */
-/*   Updated: 2024/05/19 10:06:58 by jbakker       ########   odam.nl         */
+/*   Updated: 2024/08/19 02:00:00 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int		ft_max(int a, int b);
 int		ft_min(int a, int b);
 int		ft_wordcount(char *ptr);
 int		ft_atoi(const char *nptr);
+int		ft_split_size(char **array);
+int		ft_strcmp(char *s1, char *s2);
 int		ft_min_item(int *list, int size);
 int		ft_max_item(int *list, int size);
 int		ft_min_index(int *list, int size);
@@ -70,8 +72,10 @@ int		ft_putstr(char *str, t_flags *flags);
 int		ft_atoi_base(const char *nptr, int base);
 int		ft_putvoidptr(void *ptr, t_flags *flags);
 int		ft_put_uint(unsigned int numb, int print);
+int		ft_safe_atoi(const char *nptr, int *output);
 int		ft_write(int force, const char *str, int len);
 int		ft_printhex(int num, int hex, t_flags *flags);
+int		ft_printf_fd(const char *format, int fd, ...);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		get_flags(const char *format, int index, t_flags *flags);
@@ -91,6 +95,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_print_flags(t_flags *flags);
 void	ft_putendl_fd(char *s, int fd);
+void	ft_print_split(char **split, char *name);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 void	*ft_memset(void *s, int c, size_t n);
@@ -107,13 +112,21 @@ char	*get_next_line(int fd);
 char	*ft_strdup(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
+char	*ft_multijoin(char **strs, char const *sep);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
+char	*ft_strreplace(char *str, char *old, char *new);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
+char	*ft_strjoin_duo(char const *s1, char const *sep, char const *s2);
 
 char	**ft_split(char const *s, char c);
+char	**ft_split_push(char ***array, char *new);
+char	**ft_split_realloc(char **array, int new_size);
+char	**ft_split_insert(char ***array, char *new, int index);
+char	**ft_split_insert_split(char ***array, char **new, int index);
+char	**ft_split_func(char const *s, int (*is_split)(char*), char *hidden);
 
 // Bonus functions
 
@@ -128,5 +141,6 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
+void	free_array(char **array);
 
 #endif

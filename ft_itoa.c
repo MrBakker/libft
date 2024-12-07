@@ -6,7 +6,7 @@
 /*   By: jbakker <marvin@42.fr>                       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 15:46:16 by jbakker       #+#    #+#                 */
-/*   Updated: 2023/10/06 19:38:20 by jbakker       ########   odam.nl         */
+/*   Updated: 2024/06/26 14:01:14 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ char	*ft_itoa(int n)
 	if (!output)
 		return (0);
 	output[--count] = '\0';
+	output[0] = '0';
 	if (n < 0)
 		output[0] = '-';
 	else
 		n *= -1;
 	while (--count >= 0)
 	{
-		if (output[count] != '-')
+		if (count != 0 || output[0] != '-')
 			output[count] = '0' - n % 10;
 		n /= 10;
 	}

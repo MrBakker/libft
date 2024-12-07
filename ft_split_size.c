@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstadd_back.c                                   :+:    :+:            */
+/*   ft_split_size.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jbakker <jbakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/10/04 13:20:04 by jbakker       #+#    #+#                 */
-/*   Updated: 2024/06/29 19:33:49 by jbakker       ########   odam.nl         */
+/*   Created: 2024/07/14 15:49:37 by jbakker       #+#    #+#                 */
+/*   Updated: 2024/07/14 16:33:00 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	ft_split_size(char **array)
 {
-	if (lst)
-	{
-		if (*lst)
-			ft_lstlast(*lst)->next = new;
-		else
-			*lst = new;
-	}
-	else
-	{
-		*lst = new;
-	}
+	int	i;
+
+	i = 0;
+	while (array && *array && array[i])
+		i++;
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: jbakker <jbakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/03 12:18:45 by jbakker       #+#    #+#                 */
-/*   Updated: 2024/04/26 13:46:55 by jbakker       ########   odam.nl         */
+/*   Updated: 2024/07/02 14:32:38 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ int	ft_write(int force, const char *str, int len)
 	{
 		if (force || !grow_buff(&buff, buff.index + len))
 		{
-			buff.written += write(1, buff.buff, buff.index);
-			buff.written += write(1, str, len);
+			force = (!!force * force + !force);
+			buff.written += write(force, buff.buff, buff.index);
+			buff.written += write(force, str, len);
 			return_val = buff.written;
 			buff.capacity = 0;
 			buff.index = 0;

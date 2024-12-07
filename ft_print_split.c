@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstadd_back.c                                   :+:    :+:            */
+/*   ft_print_split.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jbakker <jbakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/10/04 13:20:04 by jbakker       #+#    #+#                 */
-/*   Updated: 2024/06/29 19:33:49 by jbakker       ########   odam.nl         */
+/*   Created: 2024/07/17 16:06:42 by jbakker       #+#    #+#                 */
+/*   Updated: 2024/08/05 11:25:48 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_print_split(char **split, char *name)
 {
-	if (lst)
-	{
-		if (*lst)
-			ft_lstlast(*lst)->next = new;
-		else
-			*lst = new;
-	}
+	char	*real_name;
+	int		index;
+
+	real_name = name;
+	index = -1;
+	if (!name)
+		real_name = "split";
+	if (!split)
+		ft_printf("%s is NULL\n", real_name);
 	else
-	{
-		*lst = new;
-	}
+		while (split[++index])
+			ft_printf("%s[%d]: %s\n", real_name, index, split[index]);
 }

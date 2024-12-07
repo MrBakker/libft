@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   free_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgoedhar <jgoedhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 16:35:25 by jbakker           #+#    #+#             */
-/*   Updated: 2024/06/26 15:24:10 by jgoedhar         ###   ########.fr       */
+/*   Created: 2024/06/17 17:24:45 by jgoedhar          #+#    #+#             */
+/*   Updated: 2024/07/02 16:00:24 by jgoedhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	free_array(char **array)
 {
-	unsigned int	index;
-	size_t			str_len;
-	char			*output;
+	size_t	i;
 
-	index = 0;
-	str_len = ft_strlen(s);
-	output = (char *)malloc((str_len + 1) * sizeof(char));
-	if (!output)
-		return (0);
-	while (index < str_len)
+	i = 0;
+	if (!array || !*array)
+		return ;
+	while (array[i])
 	{
-		output[index] = (*f)(index, s[index]);
-		++index;
+		free(array[i]);
+		i++;
 	}
-	output[index] = '\0';
-	return (output);
+	free(array);
 }

@@ -6,7 +6,7 @@
 /*   By: jbakker <jbakker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/09 13:52:08 by jbakker       #+#    #+#                 */
-/*   Updated: 2024/05/18 10:50:41 by jbakker       ########   odam.nl         */
+/*   Updated: 2024/07/08 16:44:53 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,20 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(arguments);
 	return (ft_write(1, NULL, 0));
+}
+
+int	ft_printf_fd(const char *format, int fd, ...)
+{
+	va_list	arguments;
+	int		index;
+
+	index = 0;
+	va_start(arguments, fd);
+	while (index >= 0 && format[index])
+	{
+		print_normal_string(&format[index], &index);
+		print_argument(&format[index], &index, &arguments);
+	}
+	va_end(arguments);
+	return (ft_write(fd, NULL, 0));
 }

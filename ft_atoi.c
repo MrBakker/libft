@@ -6,7 +6,7 @@
 /*   By: jbakker <marvin@42.fr>                       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 17:02:13 by jbakker       #+#    #+#                 */
-/*   Updated: 2024/05/17 11:55:25 by jbakker       ########   odam.nl         */
+/*   Updated: 2024/08/19 12:54:38 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,23 @@ int	ft_atoi_base(const char *nptr, int base)
 	while (nptr[index] && base > translate_base(nptr[index]))
 		output = output * base + translate_base(nptr[index++]) * factor;
 	return (output);
+}
+
+int	ft_safe_atoi(const char *nptr, int *output)
+{
+	int	index;
+
+	index = 0;
+	if ((nptr[index] == '-' || nptr[index] == '+') && \
+		ft_isdigit(nptr[index + 1]))
+		++index;
+	while (ft_isdigit(nptr[index]))
+		++index;
+	if (nptr[index] != '\0')
+	{
+		*output = 0;
+		return (0);
+	}
+	*output = ft_atoi(nptr);
+	return (1);
 }

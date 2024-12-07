@@ -2,7 +2,7 @@ NAME = libft.a
 
 CC := cc
 DIR := objs/
-EXTRAFLAGS := -Wall -Wextra -Werror
+EXTRAFLAGS := -Wall -Wextra -Werror -g
 
 SRCS := ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 	ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c ft_memcmp.c \
@@ -16,6 +16,8 @@ SRCS := ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 	ft_printf.c ft_printf_utils.c ft_putstr.c ft_endswith.c ft_sort_int_list.c \
 	ft_putchar.c ft_putvoidptr.c ft_putnum.c ft_putunum.c ft_printhex.c \
 	ft_flags.c ft_write.c ft_wordcount.c ft_free_split.c ft_min.c ft_max.c \
+	ft_strcmp.c free_array.c ft_strreplace.c ft_split_func.c ft_split_push.c \
+	ft_split_size.c ft_print_split.c
 
 BINS := $(addprefix ${DIR}, ${SRCS:.c=.o})
 
