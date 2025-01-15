@@ -6,19 +6,20 @@
 /*   By: jgoedhar <jgoedhar@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/03 12:03:34 by jbakker       #+#    #+#                 */
-/*   Updated: 2024/08/19 02:00:00 by jbakker       ########   odam.nl         */
+/*   Updated: 2025/01/15 14:16:24 by jbakker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include "ft_file.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
 # include <limits.h>
 
-# define BUFFER_SIZE 200
+# define WHITESPACE " \t\n\r\v\f"
 
 typedef struct s_flags
 {
@@ -69,6 +70,7 @@ int		ft_putnum(int num, t_flags *flags);
 int		ft_putchar(char c, t_flags *flags);
 int		ft_putunum(int num, t_flags *flags);
 int		ft_putstr(char *str, t_flags *flags);
+int		char_is_in_set(char c, char const *set);
 int		ft_atoi_base(const char *nptr, int base);
 int		ft_putvoidptr(void *ptr, t_flags *flags);
 int		ft_put_uint(unsigned int numb, int print);
@@ -95,7 +97,9 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_print_flags(t_flags *flags);
 void	ft_putendl_fd(char *s, int fd);
+void	ft_local_trim(char *s1, char const *set);
 void	ft_print_split(char **split, char *name);
+void	ft_strncpy(char *src, char *dest, size_t n);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 void	*ft_memset(void *s, int c, size_t n);
@@ -104,11 +108,9 @@ void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 
-char	check(unsigned int i, char c);
 char	num_to_hex(int num, char base_case);
 
 char	*ft_itoa(int n);
-char	*get_next_line(int fd);
 char	*ft_strdup(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
